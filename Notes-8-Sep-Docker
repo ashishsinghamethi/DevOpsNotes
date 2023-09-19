@@ -1,0 +1,52 @@
+# this is my first dockerfile
+
+FROM ubuntu
+LABEL maintainer="Sonal"
+RUN apt-get update
+RUN apt-get install nginx -y
+RUN apt-get install git -y
+COPY index.html /var/www/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+Create the index.html file
+
+<h1> this file is from docker </h1>
+
+Save (:wq!)
+
+Build the dockerfile
+
+docker build -t myimage01 .
+
+
+RUN THE IMAGE
+
+ docker run -d --name web -P  myimage01
+
+
+Demo2:
+====================
+
+git clone https://github.com/Sonal0409/nodejsappDockerfile.git
+
+cd nodejsappDockerfile
+
+docker build -t myimage02 .
+
+docker images
+
+docker run -d --name web2 -P myimage02
+
+
+Push images:
+
+push the file to docker hub , our repo
+
+# docker login
+ username 
+ password
+
+# docker tag myimage01 hubacountname/myimage01
+
+# docker push hubacountname/myimage01
